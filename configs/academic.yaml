@@ -1,0 +1,6 @@
+# Academic Website Configurations
+pubmed:
+  base_url: "https://pubmed.ncbi.nlm.nih.gov"
+  search_endpoint: "/?term="
+google_scholar:
+  base_url: "https://scholar.google.com"
