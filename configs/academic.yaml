@@ -13,3 +13,10 @@ google_scholar:
   user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
   retry_attempts: 3
   timeout: 10
+
+
+ssrn:
+  base_url: "https://papers.ssrn.com"
+  search_endpoint: "/sol3/results.cfm"
+  article_selector: "h3.layout_1nqf4_106 a"  # Updated selector for article links and titles
+  link_selector: "a"  # The link itself is in the <a> tag

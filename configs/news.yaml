@@ -13,3 +13,10 @@ guardian:
   url: "https://www.theguardian.com/global-development"
   selectors:
     article_link: "a[data-link-name='article']"
+
+
+reuters:
+  url: "https://www.reuters.com/world/africa/"
+  selectors:
+    article_link: "a[data-testid='Heading']"
+    publication_time: "time[data-testid='Label']"
