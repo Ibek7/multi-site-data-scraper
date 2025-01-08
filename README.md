@@ -35,10 +35,10 @@ Configuration
 
 Configure the scraper by editing the YAML files in the configs/ directory:
 	•	Example:
-           africanews:
-                      url: "https://www.africanews.com"
-                      selectors:
-                      article_link: ".teaser_title a"
+                    africanews:
+                         url: "https://www.africanews.com"
+                         selectors:
+                         article_link: ".teaser_title a"
 
 Running the Scraper
 
