@@ -7,3 +7,9 @@ aljazeera:
   url: "https://www.aljazeera.com/where/africa/"
   selectors:
     article_link: "a.u-clickable-card__link"
+
+
+guardian:
+  url: "https://www.theguardian.com/global-development"
+  selectors:
+    article_link: "a[data-link-name='article']"

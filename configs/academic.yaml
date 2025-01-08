@@ -4,3 +4,12 @@ pubmed:
   user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
   retry_attempts: 3
   timeout: 10
+
+
+google_scholar:
+  base_url: "https://scholar.google.com"
+  search_query: "machine learning"
+  num_results: 10
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+  retry_attempts: 3
+  timeout: 10
