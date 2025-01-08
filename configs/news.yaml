@@ -2,3 +2,8 @@ bbc:
   url: "https://www.bbc.com/news/world/africa"
   selectors:
   - "h2[data-testid='card-headline']"
+
+aljazeera:
+  url: "https://www.aljazeera.com/where/africa/"
+  selectors:
+    article_link: "a.u-clickable-card__link"
