@@ -6,8 +6,8 @@ from scrapers.news.guardian_scraper import scrape_guardian_global_development
 from scrapers.academic.google_scholar_scraper import scrape_google_scholar
 from scrapers.academic.ssrn_scraper import scrape_ssrn
 from scrapers.news.reuters_scraper import scrape_reuters_africa 
-
-
+from scrapers.news.africanews_scraper import scrape_africanews
+#
 class TestPubMedScraper(unittest.TestCase):
     def test_scrape_pubmed(self):
         self.assertIsNone(scrape_pubmed("machine learning"))
@@ -74,3 +74,14 @@ class TestReutersScraper(unittest.TestCase):
         self.assertIn("title", data[0], "Each article should have a title.")
         self.assertIn("link", data[0], "Each article should have a link.")
         self.assertIn("published_time", data[0], "Each article should have a published time.")
+
+
+class TestAfricaNewsScraper(unittest.TestCase):
+    def test_scrape_africanews(self):
+        data = scrape_africanews()
+        print("Scraped data:", data)  # Debugging output
+        self.assertIsNotNone(data, "Scraped data should not be None.")
+        self.assertIsInstance(data, list, "Scraped data should be a list.")
+        self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+        self.assertIn("title", data[0], "Each article should have a title.")
+        self.assertIn("link", data[0], "Each article should have a link.")

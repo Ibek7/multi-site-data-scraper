@@ -20,3 +20,8 @@ reuters:
   selectors:
     article_link: "a[data-testid='Heading']"
     publication_time: "time[data-testid='Label']"
+
+africanews:
+  url: "https://www.africanews.com"
+  selectors:
+    article_link: "h2.teaser_title a"
