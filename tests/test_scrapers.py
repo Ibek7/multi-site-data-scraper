@@ -8,6 +8,7 @@ from scrapers.academic.ssrn_scraper import scrape_ssrn
 from scrapers.news.reuters_scraper import scrape_reuters_africa 
 from scrapers.news.africanews_scraper import scrape_africanews
 from scrapers.news.mail_guardian_scraper import scrape_mail_guardian
+from scrapers.news.cnn_africa_scraper import scrape_cnn_africa
 
 class TestPubMedScraper(unittest.TestCase):
     def test_scrape_pubmed(self):
@@ -54,15 +55,15 @@ class TestGoogleScholarScraper(unittest.TestCase):
         self.assertIn("authors", data[0], "Each article should have authors.")
         self.assertIn("link", data[0], "Each article should have a link.")
 
-# #######
-# # class TestSSRNScraper(unittest.TestCase):
-# #     def test_scrape_ssrn(self):
-# #         data = scrape_ssrn("human trafficking")
-# #         self.assertIsNotNone(data, "Scraped data should not be None.")
-# #         self.assertIsInstance(data, list, "Scraped data should be a list.")
-# #         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
-# #         self.assertIn("title", data[0], "Each article should have a title.")
-# #         self.assertIn("link", data[0], "Each article should have a link.")
+######
+class TestSSRNScraper(unittest.TestCase):
+    def test_scrape_ssrn(self):
+        data = scrape_ssrn("human trafficking")
+        self.assertIsNotNone(data, "Scraped data should not be None.")
+        self.assertIsInstance(data, list, "Scraped data should be a list.")
+        self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+        self.assertIn("title", data[0], "Each article should have a title.")
+        self.assertIn("link", data[0], "Each article should have a link.")
 
 
 
@@ -76,16 +77,16 @@ class TestReutersScraper(unittest.TestCase):
         self.assertIn("link", data[0], "Each article should have a link.")
         self.assertIn("published_time", data[0], "Each article should have a published time.")
 
-# ######
-# # class TestAfricaNewsScraper(unittest.TestCase):
-# #     def test_scrape_africanews(self):
-# #         data = scrape_africanews()
-# #         print("Scraped data:", data)  # Debugging output
-# #         self.assertIsNotNone(data, "Scraped data should not be None.")
-# #         self.assertIsInstance(data, list, "Scraped data should be a list.")
-# #         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
-# #         self.assertIn("title", data[0], "Each article should have a title.")
-# #         self.assertIn("link", data[0], "Each article should have a link.")
+#####
+class TestAfricaNewsScraper(unittest.TestCase):
+    def test_scrape_africanews(self):
+        data = scrape_africanews()
+        print("Scraped data:", data)  # Debugging output
+        self.assertIsNotNone(data, "Scraped data should not be None.")
+        self.assertIsInstance(data, list, "Scraped data should be a list.")
+        self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+        self.assertIn("title", data[0], "Each article should have a title.")
+        self.assertIn("link", data[0], "Each article should have a link.")
 
 
 
@@ -102,3 +103,28 @@ class TestMailGuardianScraper(unittest.TestCase):
         print("Scraped Articles:")
         for article in articles:
             print(f"Title: {article['title']}, Link: {article['link']}")
+
+
+
+class TestCNNAfricaScraper(unittest.TestCase):
+    def test_scrape_cnn_africa_success(self):
+        try:
+            articles = scrape_cnn_africa()
+            self.assertIsNotNone(articles, "Scraped data should not be None.")
+            self.assertIsInstance(articles, list, "Scraped data should be a list.")
+            self.assertGreater(len(articles), 0, "Scraped data should contain at least one article.")
+            for article in articles:
+                self.assertIn("title", article, "Each article should have a title.")
+                self.assertIn("link", article, "Each article should have a link.")
+            
+            # Print scraped articles
+            print("\nScraped Articles:")
+            for article in articles:
+                print(f"Title: {article['title']}, Link: {article['link']}")
+
+        except FileNotFoundError as e:
+            self.fail(f"FileNotFoundError: {e}")
+        except Exception as e:
+            self.fail(f"An unexpected error occurred: {e}")
+
+

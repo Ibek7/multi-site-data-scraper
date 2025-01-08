@@ -31,3 +31,12 @@ mail_guardian:
   url: "https://mg.co.za"
   selectors:
     article_link: "div.headline-right h2 a"
+
+
+cnn_africa:
+  name: "CNN Africa"
+  base_url: "https://edition.cnn.com"
+  endpoint: "/africa"
+  article_selector: "span.container__headline-text"
+  link_parent_selector: "a"
+  link_prefix: "https://edition.cnn.com"
