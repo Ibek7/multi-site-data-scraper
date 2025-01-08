@@ -51,59 +51,39 @@ import yaml
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-def scrape_africanews(config_path="configs/news.yaml", debug=False):
+def scrape_africanews(base_url="https://www.africanews.com"):
+    """
+    Scrapes the AfricaNews website for news articles.
+
+    Args:
+        base_url (str): Base URL of the AfricaNews website.
+
+    Returns:
+        list: A list of dictionaries containing article titles and URLs.
+    """
     try:
-        # Load configurations
-        with open(config_path, "r") as file:
-            config = yaml.safe_load(file)
-
-        africanews_config = config.get("africanews")
-        if not africanews_config:
-            raise ValueError("Africa News configuration not found in YAML file.")
-
-        url = africanews_config.get("url")
-        selector = africanews_config.get("selectors", {}).get("article_link")
-        if not url or not selector:
-            raise ValueError("URL or article link selector is missing in the configuration.")
-
-        # Request Africa News page with headers
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
-        response = requests.get(url, headers=headers, timeout=10)  # Added timeout
-        if response.status_code != 200:
-            raise Exception(f"Failed to fetch {url} (Status Code: {response.status_code})")
-
-        # Debugging: Print raw HTML if debug flag is enabled
-        if debug:
-            logging.debug(response.text)
-
-        # Parse HTML
+        response = requests.get(base_url, headers=headers)
+        response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
+        
+        # Updated selector
+        article_selector = "div.container div.teaser__content a.teaser__title"
         articles = []
 
-        # Find articles
-        elements = soup.select(selector)
-        logging.info(f"Found {len(elements)} elements with selector '{selector}'")
+        for link in soup.select(article_selector):
+            title = link.get_text(strip=True)
+            url = link["href"]
+            full_url = url if url.startswith("http") else f"{base_url}{url}"
+            articles.append({"title": title, "link": full_url})
 
-        for article in elements:
-            title = article.get_text(strip=True)
-            link = article.get("href")
-            if not link:
-                logging.warning(f"Article missing href attribute: {article}")
-                continue
-            full_link = link if link.startswith("http") else f"https://www.africanews.com{link}"
-
-            articles.append({
-                "title": title,
-                "link": full_link,
-            })
-
+        # Log if no articles are found
+        if not articles:
+            print("No articles found.")
         return articles
-
-    except yaml.YAMLError as e:
-        logging.error(f"YAML parsing error: {e}")
-        return []
+    
     except Exception as e:
-        logging.error(f"Error scraping Africa News: {e}")
-        return []
+        print(f"Error scraping AfricaNews: {e}")
+        return None

@@ -25,3 +25,9 @@ africanews:
   url: "https://www.africanews.com"
   selectors:
     article_link: "h2.teaser_title a"
+
+
+mail_guardian:
+  url: "https://mg.co.za"
+  selectors:
+    article_link: "div.headline-right h2 a"
