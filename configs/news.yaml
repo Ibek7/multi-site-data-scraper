@@ -40,3 +40,9 @@ cnn_africa:
   article_selector: "span.container__headline-text"
   link_parent_selector: "a"
   link_prefix: "https://edition.cnn.com"
+
+
+theeastafrican:
+  url: "https://www.theeastafrican.co.ke"
+  selectors:
+    article_title: "h3.teaser-image-large_title"  # CSS Selector for the article title

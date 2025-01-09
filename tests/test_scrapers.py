@@ -9,6 +9,10 @@ from scrapers.news.reuters_scraper import scrape_reuters_africa
 from scrapers.news.africanews_scraper import scrape_africanews
 from scrapers.news.mail_guardian_scraper import scrape_mail_guardian
 from scrapers.news.cnn_africa_scraper import scrape_cnn_africa
+from scrapers.news.theeastafrican_scraper import scrape_theeastafrican 
+
+
+
 
 class TestPubMedScraper(unittest.TestCase):
     def test_scrape_pubmed(self):
@@ -128,3 +132,13 @@ class TestCNNAfricaScraper(unittest.TestCase):
             self.fail(f"An unexpected error occurred: {e}")
 
 
+class TestTheEastAfricanScraper(unittest.TestCase):
+    def test_scrape_theeastafrican_success(self):
+        articles = scrape_theeastafrican()
+        self.assertIsNotNone(articles, "Scraped data should not be None.")
+        self.assertIsInstance(articles, list, "Scraped data should be a list.")
+        self.assertGreater(len(articles), 0, "Scraped data should contain at least one article.")
+        self.assertIn("title", articles[0], "Each article should have a title.")
+        self.assertIn("link", articles[0], "Each article should have a link.")
+        for article in articles:
+            print(f"Title: {article['title']}, Link: {article['link']}")
