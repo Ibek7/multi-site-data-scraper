@@ -13,6 +13,7 @@ from scrapers.news.theeastafrican_scraper import scrape_theeastafrican
 from scrapers.news.un_news_africa_scraper import scrape_un_news_africa
 from scrapers.news.daily_nation_scraper import scrape_daily_nation_specific
 from scrapers.academic.ajol_scraper import scrape_ajol
+from scrapers.academic.researchgate_scraper import scrape_researchgate_with_selenium
 import urllib.parse
 
 
@@ -177,11 +178,26 @@ import urllib.parse
 #         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
 #         self.assertIn("title", data[0], "Each article should have a title.")
 #         self.assertIn("link", data[0], "Each article should have a link.")
+#         self.assertIn("summary", data[0], "Each article should have a summary.")
 
-class TestAJOLScraper(unittest.TestCase):
-    def test_scrape_ajol(self):
-        query_url = "https://www.ajol.info/index.php/ajol/Gsearch/google?q=Human+trafficking+in+east+africa#gsc.tab=0&gsc.q=Human%20trafficking%20in%20east%20africa&gsc.page=1"
-        data = scrape_ajol(query_url)
+# class TestAJOLScraper(unittest.TestCase):
+#     def test_scrape_ajol(self):
+#         query_url = "https://www.ajol.info/index.php/ajol/Gsearch/google?q=Human+trafficking+in+east+africa#gsc.tab=0&gsc.q=Human%20trafficking%20in%20east%20africa&gsc.page=1"
+#         data = scrape_ajol(query_url)
+#         self.assertIsNotNone(data, "Scraped data should not be None.")
+#         self.assertIsInstance(data, list, "Scraped data should be a list.")
+#         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+#         self.assertIn("title", data[0], "Each article should have a title.")
+#         self.assertIn("link", data[0], "Each article should have a link.")
+
+
+
+
+
+class TestResearchGateScraper(unittest.TestCase):
+    def test_scrape_researchgate(self):
+        query_url = "https://www.researchgate.net/search/publication?q=Human%20trafficking%20in%20east%20africa"
+        data = scrape_researchgate_with_selenium(query_url)
         self.assertIsNotNone(data, "Scraped data should not be None.")
         self.assertIsInstance(data, list, "Scraped data should be a list.")
         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")

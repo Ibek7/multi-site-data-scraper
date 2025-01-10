@@ -27,3 +27,9 @@ ssrn:
   selectors:
     article_link: "div.gs-title a"  # Adjusted based on observation
     article_summary: "div.gs-bidi-start-align"  # Adjusted selector for summary
+
+
+researchgate:
+  url: "https://www.researchgate.net/search/publication?q="
+  selectors:
+    article_link: "a.nova-legacy-e-link.nova-legacy-v-publication-item__title"
