@@ -20,3 +20,10 @@ ssrn:
   search_endpoint: "/sol3/results.cfm"
   article_selector: "h3.layout_1nqf4_106 a"  # Updated selector for article links and titles
   link_selector: "a"  # The link itself is in the <a> tag
+
+
+  ajol:
+  url: "https://www.ajol.info/index.php/search/results"
+  selectors:
+    article_link: "div.gs-title a"  # Adjusted based on observation
+    article_summary: "div.gs-bidi-start-align"  # Adjusted selector for summary

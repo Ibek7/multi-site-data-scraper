@@ -118,6 +118,6 @@ def scrape_un_news_africa():
     return articles
 
 
-# Call the function to test
-scraped_articles = scrape_un_news_africa()
-print(f"Total relevant articles scraped: {len(scraped_articles)}")
+# # Call the function to test
+# scraped_articles = scrape_un_news_africa()
+# print(f"Total relevant articles scraped: {len(scraped_articles)}")
