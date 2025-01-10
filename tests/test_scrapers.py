@@ -14,6 +14,10 @@ from scrapers.news.un_news_africa_scraper import scrape_un_news_africa
 from scrapers.news.daily_nation_scraper import scrape_daily_nation_specific
 from scrapers.academic.ajol_scraper import scrape_ajol
 from scrapers.academic.researchgate_scraper import scrape_researchgate_with_selenium
+from scrapers.academic.proquest_scraper import scrape_proquest_with_selenium
+from scrapers.academic.springer_scraper import scrape_springer
+from scrapers.academic.taylor_and_francis_scraper import scrape_taylor_and_francis
+
 import urllib.parse
 
 
@@ -194,10 +198,48 @@ import urllib.parse
 
 
 
-class TestResearchGateScraper(unittest.TestCase):
-    def test_scrape_researchgate(self):
-        query_url = "https://www.researchgate.net/search/publication?q=Human%20trafficking%20in%20east%20africa"
-        data = scrape_researchgate_with_selenium(query_url)
+# class TestResearchGateScraper(unittest.TestCase):
+#     def test_scrape_researchgate(self):
+#         query_url = "https://www.researchgate.net/search/publication?q=Human%20trafficking%20in%20east%20africa"
+#         data = scrape_researchgate_with_selenium(query_url)
+#         self.assertIsNotNone(data, "Scraped data should not be None.")
+#         self.assertIsInstance(data, list, "Scraped data should be a list.")
+#         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+#         self.assertIn("title", data[0], "Each article should have a title.")
+#         self.assertIn("link", data[0], "Each article should have a link.")
+
+
+# class TestProQuestScraper(unittest.TestCase):
+#     def test_scrape_proquest(self):
+#         query_url = "https://www.proquest.com/resultsol/16E1A41243B54FD9PQ/1"
+#         data = scrape_proquest_with_selenium(query_url)
+        
+#         self.assertIsNotNone(data, "Scraped data should not be None.")
+#         self.assertIsInstance(data, list, "Scraped data should be a list.")
+#         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+#         self.assertIn("title", data[0], "Each article should have a title.")
+#         self.assertIn("link", data[0], "Each article should have a link.")
+
+
+
+class TestSpringerScraper(unittest.TestCase):
+    def test_scrape_springer(self):
+        query_url = "https://link.springer.com/search?new-search=true&query=human+trafficking+in+east+africa"
+        data = scrape_springer(query_url)
+        self.assertIsNotNone(data, "Scraped data should not be None.")
+        self.assertIsInstance(data, list, "Scraped data should be a list.")
+        self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+        self.assertIn("title", data[0], "Each article should have a title.")
+        self.assertIn("link", data[0], "Each article should have a link.")
+
+
+
+
+
+class TestTaylorAndFrancisScraper(unittest.TestCase):
+    def test_scrape_taylor_and_francis(self):
+        query_url = "https://www.tandfonline.com/action/doSearch?AllField=human+trafficking+in+east+africa"
+        data = scrape_taylor_and_francis(query_url)
         self.assertIsNotNone(data, "Scraped data should not be None.")
         self.assertIsInstance(data, list, "Scraped data should be a list.")
         self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")

@@ -33,3 +33,24 @@ researchgate:
   url: "https://www.researchgate.net/search/publication?q="
   selectors:
     article_link: "a.nova-legacy-e-link.nova-legacy-v-publication-item__title"
+
+
+proquest:
+  url: "https://www.proquest.com/resultsol/16E1A41243B54FD9PQ/1"
+  selectors:
+    article_title: ".truncatedResultsTitle"
+    article_link_xpath: "./ancestor::a"
+
+
+springer:
+  url: "https://link.springer.com/search?new-search=true&query=human+trafficking+in+east+africa"
+  selectors:
+    article_link: "a.app-card__open__link"
+    article_title: "span"
+
+
+taylor_and_francis:
+  url: "https://www.tandfonline.com/action/doSearch?AllField=human+trafficking+in+east+africa"
+  selectors:
+    article_link: "a.ref.nowrap"
+    article_title: "a.ref.nowrap"
