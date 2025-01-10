@@ -46,3 +46,10 @@ theeastafrican:
   url: "https://www.theeastafrican.co.ke"
   selectors:
     article_title: "h3.teaser-image-large_title"  # CSS Selector for the article title
+
+
+un_news_africa:
+  base_url: "https://news.un.org/en/news/region/africa"
+  article_selector: "h2.node__title"
+  content_selector: "div.content__body"  # Assuming article content is here
+  pagination_next_selector: "li.pager-next a"
