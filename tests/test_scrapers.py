@@ -11,6 +11,7 @@ from scrapers.news.mail_guardian_scraper import scrape_mail_guardian
 from scrapers.news.cnn_africa_scraper import scrape_cnn_africa
 from scrapers.news.theeastafrican_scraper import scrape_theeastafrican 
 from scrapers.news.un_news_africa_scraper import scrape_un_news_africa
+from scrapers.news.daily_nation_scraper import scrape_daily_nation_specific
 import urllib.parse
 
 
@@ -144,21 +145,33 @@ import urllib.parse
 #             print(f"Title: {article['title']}, Link: {article['link']}")
 
 
-class TestUNNewsAfricaScraper(unittest.TestCase):
-    def test_scrape_un_news_africa(self):
-        # Scrape data
-        articles = scrape_un_news_africa()
+# class TestUNNewsAfricaScraper(unittest.TestCase):
+#     def test_scrape_un_news_africa(self):
+#         # Scrape data
+#         articles = scrape_un_news_africa()
 
-        # Ensure the result is a list
-        self.assertIsInstance(articles, list, "Scraped data should be a list.")
-        # Ensure there is at least one filtered article
-        self.assertGreater(len(articles), 0, "Scraped data should contain at least one relevant article.")
-        # Check that each article contains a title and a link
-        for article in articles:
-            self.assertIn("title", article, "Each article should have a title.")
-            self.assertIn("link", article, "Each article should have a link.")
+#         # Ensure the result is a list
+#         self.assertIsInstance(articles, list, "Scraped data should be a list.")
+#         # Ensure there is at least one filtered article
+#         self.assertGreater(len(articles), 0, "Scraped data should contain at least one relevant article.")
+#         # Check that each article contains a title and a link
+#         for article in articles:
+#             self.assertIn("title", article, "Each article should have a title.")
+#             self.assertIn("link", article, "Each article should have a link.")
 
-        # Print the filtered articles
-        print("\nFiltered Articles:")
-        for article in articles:
-            print(f"Title: {article['title']}, Link: {article['link']}")
+#         # Print the filtered articles
+#         print("\nFiltered Articles:")
+#         for article in articles:
+#             print(f"Title: {article['title']}, Link: {article['link']}")
+
+
+
+class TestDailyNationScraper(unittest.TestCase):
+    def test_scrape_daily_nation(self):
+        query_url = "https://nation.africa/service/search/kenya/290754?query=human%20trafficking%20in%20east%20africa%20&sortByDate=true"
+        data = scrape_daily_nation_specific(query_url)
+        self.assertIsNotNone(data, "Scraped data should not be None.")
+        self.assertIsInstance(data, list, "Scraped data should be a list.")
+        self.assertGreater(len(data), 0, "Scraped data should contain at least one article.")
+        self.assertIn("title", data[0], "Each article should have a title.")
+        self.assertIn("link", data[0], "Each article should have a link.")

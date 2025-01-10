@@ -53,3 +53,10 @@ un_news_africa:
   article_selector: "h2.node__title"
   content_selector: "div.content__body"  # Assuming article content is here
   pagination_next_selector: "li.pager-next a"
+
+
+daily_nation:
+  url: "https://nation.africa/service/search/kenya/290754"
+  selectors:
+    article_link: "h3.title-small a"
+    article_summary: "p.teaser-image-right_paragraph"
